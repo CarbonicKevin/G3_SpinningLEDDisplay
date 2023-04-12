@@ -1,10 +1,10 @@
 `timescale 1 ns / 1 ps
 
-module slave_ip_v2_0 #
+module slave_ip_v1_0 #
 	(
 	// Users to add parameters here
 	parameter NO_ARM_LED = 32,
-	parameter NO_DELTA_INTERVALS = 16, //180,
+	parameter NO_DELTA_INTERVALS = 18, //180,
 	parameter MDIM = 8,//64, //////////////////////// MUST BE POWER OF 2
 	parameter MDIM2 = MDIM * MDIM,
 	parameter MAP_ENTRY_SIZE = 8 * 2,
@@ -21,8 +21,9 @@ module slave_ip_v2_0 #
 	)
 	(
 	// Users to add ports here
-	output wire [(MDIM2 * RGB_SIZE)-1:0] inp_image,
-	output wire inp2_valid,
+	output wire [(MAP_DIM)-1:0] map,
+	// output wire [31:0] w_addr,
+	output wire inp1_valid,
 	// User ports ends
 	// Do not modify the ports beyond this line
 
@@ -52,16 +53,17 @@ module slave_ip_v2_0 #
 	);
 
 	// Instantiation of Axi Bus Interface S00_AXI
-	slave_ip_v2_0_S00_AXI # ( 
+	slave_ip_v1_0_S00_AXI # ( 
 		.MDIM(MDIM),
 		.MDIM2(MDIM2),
 		.MAP_ENTRY_SIZE(MAP_ENTRY_SIZE),
 		.RGB_SIZE(RGB_SIZE),
 		.C_S_AXI_DATA_WIDTH(C_S00_AXI_DATA_WIDTH),
 		.C_S_AXI_ADDR_WIDTH(C_S00_AXI_ADDR_WIDTH)
-	) slave_ip_v2_0_S00_AXI_inst (
-		.inp_image(inp_image),
-		.inp2_valid(inp2_valid),
+	) slave_ip_v1_0_S00_AXI_inst (
+		.map(map),
+		// .w_addr(w_addr),
+		.inp1_valid(inp1_valid),
 		.S_AXI_ACLK(s00_axi_aclk),
 		.S_AXI_ARESETN(s00_axi_aresetn),
 		.S_AXI_AWADDR(s00_axi_awaddr),
@@ -86,7 +88,7 @@ module slave_ip_v2_0 #
 	);
 
 	// Add user logic here
-	assign s00_axi_wstrb = 1;
+
 	// User logic ends
 
 endmodule

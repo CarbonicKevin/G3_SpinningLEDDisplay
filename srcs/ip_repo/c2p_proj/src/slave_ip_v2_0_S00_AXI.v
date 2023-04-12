@@ -1,11 +1,11 @@
 
 `timescale 1 ns / 1 ps
 
-	module slave_ip_v1_0_S00_AXI #
+	module slave_ip_v2_0_S00_AXI #
 	(
 		// Users to add parameters here
 		parameter NO_ARM_LED = 32,
-        parameter NO_DELTA_INTERVALS = 16, //180,
+        parameter NO_DELTA_INTERVALS = 18, //180,
         parameter MDIM = 8,//64, //////////////////////// MUST BE POWER OF 2
         parameter MDIM2 = MDIM * MDIM,
         parameter MAP_ENTRY_SIZE = 8 * 2,
@@ -16,15 +16,14 @@
 		// Do not modify the parameters beyond this line
 
 		// Width of S_AXI data bus
-		parameter integer C_S_AXI_DATA_WIDTH	= 32,
+		parameter integer C_S_AXI_DATA_WIDTH	= 8,
 		// Width of S_AXI address bus
 		parameter integer C_S_AXI_ADDR_WIDTH	= 32
 	)
 	(
 		// Users to add ports here
-        output reg  [ MAP_DIM		   -1:0] 	map,
-        // output wire [C_S_AXI_DATA_WIDTH-1:0] 	w_addr,
-		output reg  inp1_valid,
+        output reg  [(MDIM2 * RGB_SIZE)-1:0] 	inp_image,
+		output reg  inp2_valid,
 		// User ports ends
 		// Do not modify the ports beyond this line
 
@@ -229,41 +228,41 @@
 	begin
 	  if ( S_AXI_ARESETN == 1'b0 )
 	    begin
-          map       <= 0;
-        //   inp_image <= 0;
+        //   map       <= 0;
+          inp_image <= 0;
 	    //   slv_reg2  <= 0;
-          inp1_valid <= 0;
+          inp2_valid <= 0;
 	    end 
 	  else begin
 	    if (slv_reg_wren)
 	      begin
 	        case ( axi_awaddr[ADDR_LSB+OPT_MEM_ADDR_BITS:ADDR_LSB] )
-	          2'h0:
-	            begin
-                    map[(MAP_DIM-1):C_S_AXI_DATA_WIDTH] <= map[(MAP_DIM-1-C_S_AXI_DATA_WIDTH):0];
-					for ( byte_index = 0; byte_index <= (C_S_AXI_DATA_WIDTH/8)-1; byte_index = byte_index+1 ) 
-                    begin
-                      if ( S_AXI_WSTRB[byte_index] == 1 ) begin
-                        // Respective byte enables are asserted as per write strobes 
-                        // Slave register 0
-                        map[(byte_index*8) +: 8] <= S_AXI_WDATA[(byte_index*8) +: 8];
-                      end
-                    end
-                    // map[(MDIM2*MAP_ENTRY_SIZE-1):32] <= map[(MDIM2*MAP_ENTRY_SIZE-1-32):0];
-				end
-	        //   2'h1:
+	        //   2'h0:
 	        //     begin
-            //         inp_image[(MDIM2*RGB_SIZE-1):32] <= inp_image[(MDIM2*RGB_SIZE-1-32):0];
-			// 		for ( byte_index = 0; byte_index <= (C_S_AXI_DATA_WIDTH/8)-1; byte_index = byte_index+1 )
+            //         map[(MAP_DIM-1):32] <= map[(MAP_DIM-1-32):0];
+			// 		for ( byte_index = 0; byte_index <= (C_S_AXI_DATA_WIDTH/8)-1; byte_index = byte_index+1 ) 
             //         begin
             //           if ( S_AXI_WSTRB[byte_index] == 1 ) begin
             //             // Respective byte enables are asserted as per write strobes 
-            //             // Slave register 1
-            //             inp_image[(byte_index*8) +: 8] <= S_AXI_WDATA[(byte_index*8) +: 8];
-            //           end  
+            //             // Slave register 0
+            //             map[(byte_index*8) +: 8] <= S_AXI_WDATA[(byte_index*8) +: 8];
+            //           end
             //         end
-            //         // inp_image[(MDIM2*RGB_SIZE-1):32] <= inp_image[(MDIM2*RGB_SIZE-1-32):0];
+            //         // map[(MDIM2*MAP_ENTRY_SIZE-1):32] <= map[(MDIM2*MAP_ENTRY_SIZE-1-32):0];
 			// 	end
+	          2'h0:
+	            begin
+                    inp_image[(MDIM2*RGB_SIZE-1):C_S_AXI_DATA_WIDTH] <= inp_image[(MDIM2*RGB_SIZE-1-C_S_AXI_DATA_WIDTH):0];
+					for ( byte_index = 0; byte_index <= (C_S_AXI_DATA_WIDTH/8)-1; byte_index = byte_index+1 )
+                    begin
+                      if ( S_AXI_WSTRB[byte_index] == 1 ) begin
+                        // Respective byte enables are asserted as per write strobes 
+                        // Slave register 1
+                        inp_image[(byte_index*8) +: 8] <= S_AXI_WDATA[(byte_index*8) +: 8];
+                      end  
+                    end
+                    // inp_image[(MDIM2*RGB_SIZE-1):32] <= inp_image[(MDIM2*RGB_SIZE-1-32):0];
+				end
 	        //   2'h1:
 	        //     for ( byte_index = 0; byte_index <= (C_S_AXI_DATA_WIDTH/8)-1; byte_index = byte_index+1 )
 	        //       if ( S_AXI_WSTRB[byte_index] == 1 ) begin
@@ -276,13 +275,13 @@
 	              if ( S_AXI_WSTRB[byte_index] == 1 ) begin
 	                // Respective byte enables are asserted as per write strobes 
 	                // Slave register 3
-	                inp1_valid <= S_AXI_WDATA[0:0];
+	                inp2_valid <= S_AXI_WDATA[0:0];
 	              end  
 	          default : begin
-	                      map        <= map;
-	                    //   inp_image <= inp_image;
-	                    //   slv_reg2   <= slv_reg2;
-	                      inp1_valid <= inp1_valid;
+	                    //   map       <= map;
+	                      inp_image <= inp_image;
+	                    //   slv_reg2  <= slv_reg2;
+	                      inp2_valid <= inp2_valid;
 	                    end
 	        endcase
 	      end
@@ -391,10 +390,10 @@
 	begin
 	      // Address decoding for reading registers
 	      case ( axi_araddr[ADDR_LSB+OPT_MEM_ADDR_BITS:ADDR_LSB] )
-	        2'h0    : reg_data_out <= map[31:0];
-	        // 2'h1    : reg_data_out <= inp_image[31:0];
+	        // 2'h0    : reg_data_out <= map[31:0];
+	        2'h0    : reg_data_out <= inp_image[31:0];
 	        // 2'h1    : reg_data_out <= slv_reg2[31:0];
-	        2'h1    : reg_data_out <= 32'd0 || inp1_valid;
+	        2'h1    : reg_data_out <= 32'd0 || inp2_valid;
 	        default : reg_data_out <= 0;
 	      endcase
 	end
@@ -419,7 +418,7 @@
 	end    
 
 	// Add user logic here
-	// assign w_addr = slv_reg2[31:0];
+	
     // User logic ends
 
 	endmodule

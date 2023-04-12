@@ -3,23 +3,20 @@
 module car_to_p
     #(
         parameter NO_ARM_LED = 32,
-        parameter NO_DELTA_INTERVALS = 16, //180,
+        parameter NO_DELTA_INTERVALS = 18, //180,
         parameter MDIM = 8,//64, //////////////////////// MUST BE POWER OF 2
         parameter MDIM2 = MDIM * MDIM,
         parameter MAP_ENTRY_SIZE = 8 * 2,
         parameter RGB_SIZE = 8,
         parameter MAP_DIM = NO_DELTA_INTERVALS * NO_ARM_LED * MAP_ENTRY_SIZE,
         parameter OUT_DIM = NO_DELTA_INTERVALS * NO_ARM_LED * RGB_SIZE,
-        // parameter BRAM_BASE_ADDR = 'h00000000,
-        // parameter BRAM_ADDR_OFF  = 16000,
-        LED_CONFIG_ADDR = 'h00000000,
-        LED_BASE_ADDR = 'h0,
+        parameter BRAM_BASE_ADDR = 'h00000000,
+        parameter BRAM_ADDR_OFF  = 16000,
         
-        // Width of M_AXI 1 data bus
+        // Width of S_AXI data bus
         parameter DATA_WIDTH = 32,
-        // Width of M_AXI address bus
+        // Width of S_AXI address bus
         parameter ADDR_WIDTH = 32
-
     )
 
     (
@@ -105,14 +102,11 @@ module car_to_p
     wire inp1_valid;
     wire inp2_valid;
     wire inp_valid;
-    assign inp_valid = inp1_valid;// && inp2_valid;
+    assign inp_valid = inp1_valid && inp2_valid;
     wire [(MDIM2 * RGB_SIZE)-1:0]   inp_image;
     wire [(MAP_DIM)-1:0]            map;
 
     wire out_valid;
-    reg  wr_done;
-
-    // assign s2_axi_wstrb = 4'b0001;
 
     reg  [ADDR_WIDTH-1:0] BRAM_WRITE_ADDR;
     wire [(OUT_DIM) -1:0] out_image;
@@ -180,15 +174,56 @@ module car_to_p
         .s00_axi_rready(s2_axi_rready)
     );
 
+    assign inp_image = 0; //////////////////////////////////// VERY TMP
+
     get_map m ( 
         .clock(clock),
         .resetn(resetn),
+        // .BRAM_WRITE_ADDR(BRAM_WRITE_ADDR),
         .inp_image(inp_image),
         .map(map),
-        .inp_valid(inp_valid),//////////////////////////////////// VERY TMP
+        .inp_valid(inp1_valid),//////////////////////////////////// VERY TMP
         .out_image(out_image),
         .out_valid(out_valid)
+        // .m_axi_awaddr(m_axi_awaddr),
+        // .m_axi_awvalid(m_axi_awvalid),
+        // .m_axi_awready(m_axi_awready),
+        // .m_axi_wdata(m_axi_wdata),
+        // .m_axi_wstrb(m_axi_wstrb),
+        // .m_axi_wvalid(m_axi_wvalid),
+        // .m_axi_wready(m_axi_wready),
+        // .m_axi_bresp(m_axi_bresp),
+        // .m_axi_bvalid(m_axi_bvalid),
+        // .m_axi_bready(m_axi_bready)
     );
+
+    // toggle BRAM write address
+    always @(posedge out_valid) begin
+        // reset
+        if ( ~resetn ) begin
+            BRAM_WRITE_ADDR <= BRAM_BASE_ADDR;
+        end
+        
+        // switch between base address and base + offset
+        else begin
+            if ( BRAM_WRITE_ADDR == BRAM_BASE_ADDR ) BRAM_WRITE_ADDR <= BRAM_BASE_ADDR + BRAM_ADDR_OFF;
+            else                                     BRAM_WRITE_ADDR <= BRAM_BASE_ADDR;
+        end
+    end
+
+    // assigning awaddr
+    always @(posedge clock) begin
+        // reset
+        if ( ~resetn ) begin
+            m_axi_awaddr <= BRAM_WRITE_ADDR;
+        end
+        else begin
+            if ( m_reg_wren )
+            begin
+                m_axi_awaddr[ADDR_WIDTH-1:0] <= m_axi_awaddr + RGB_SIZE; //BRAM_WRITE_ADDR + g * RGB_SIZE;
+            end
+        end
+    end
 
     // set access permissions
     assign awprot = 3'b010;
@@ -219,8 +254,8 @@ module car_to_p
 
     // tracking number of bit shifts in sending data
     reg [7:0] bit_shft_cnt;
-    parameter MAX_BIT_SHFT = OUT_DIM / 32; // max num bit shifts for sending data
-
+    parameter MAX_BIT_SHFT = 'd2; //'d3072; // max num bit shifts for sending data
+ 	
 	// master_state generator
 	always @(posedge clock) begin
 		
@@ -298,7 +333,7 @@ module car_to_p
 
     // assigning wdata
 
-    assign m_reg_wren = out_valid && (~wr_done) && (~M_AXI_WVALID) && (~M_AXI_AWVALID);
+    assign m_reg_wren = out_valid && (~M_AXI_WVALID) && (~M_AXI_AWVALID);
 
     always @(posedge clock) begin
         // reset
@@ -314,29 +349,6 @@ module car_to_p
                         m_axi_wdata[(byte_index*8) +: 8] <= m_out_img[(byte_index*8) +: 8];
                     end
                 end
-            end
-            else if (wr_done) begin
-                m_axi_wdata <= 1;
-            end
-        end
-    end
-    
-    // assigning awaddr
-    always @(posedge clock) begin
-        // reset
-        if ( ~resetn ) begin
-            m_axi_awaddr <= LED_BASE_ADDR;
-        end
-        else begin
-            if ( m_reg_wren )
-            begin
-                m_axi_awaddr[ADDR_WIDTH-1:0] <= m_axi_awaddr + RGB_SIZE; //BRAM_WRITE_ADDR + g * RGB_SIZE;
-            end
-            else if (wr_done) begin
-                m_axi_awaddr <= LED_CONFIG_ADDR;
-            end
-            else begin
-                m_axi_awaddr <= m_axi_awaddr;
             end
         end
     end
@@ -359,23 +371,6 @@ module car_to_p
         end
     end
 
-    // tracking write done
-    always @(posedge clock) begin
-        // reset to 0
-        if ( ~resetn ) begin
-            wr_done <= 0;
-        end
-
-        // set to 1 if MAX_BIT_SHFT
-        else if (bit_shft_cnt == MAX_BIT_SHFT) begin
-            wr_done <= 1;
-        end
-
-        else begin
-            wr_done <= 0;
-        end
-    end
-
     reg [1:0] edge_detector_out_valid;
 
     // m_out_img generator
@@ -388,9 +383,7 @@ module car_to_p
             m_out_img <= out_image;
         end
         else if ( m_reg_wren ) begin
-            if ( ~wr_done ) begin
-                m_out_img[(OUT_DIM-1-DATA_WIDTH):0] <= m_out_img[(OUT_DIM-1):DATA_WIDTH];
-            end
+            m_out_img[(OUT_DIM-1-32):0] <= m_out_img[(OUT_DIM-1):32];
         end
         else begin
             m_out_img <= m_out_img;
