@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 
 import axi_vip_pkg::*;
-import design_1_axi_vip_0_1_pkg::*;
+import design_1_axi_vip_0_0_pkg::*;
 
 
 // test module to drive the AXI VIP
@@ -14,7 +14,7 @@ module axi_lite_stimulus();
     * More details please refer PG267 section about "Useful Coding Guidelines and Examples"
     * for more details.
     *************************************************************************************************/
-    design_1_axi_vip_0_1_mst_t                             agent;
+    design_1_axi_vip_0_0_mst_t                             agent;
     
     /*************************************************************************************************
     * Declare variables which will be used in API and parital randomization for transaction generation
@@ -46,8 +46,9 @@ module axi_lite_stimulus();
     xil_axi_data_beat                                        Rdatabeat[];       // Read data beats
 
     //Constants
-    localparam SLAVE_BASEADDR = 'h00000000;
-    localparam BRAM_BASEADDR  = 'hC0000000;
+    localparam SLAVE1_BASEADDR = 'h00000000;
+    localparam SLAVE2_BASEADDR = 'h40000000;
+//    localparam BRAM_BASEADDR   = 'hC0000000;
 
     reg aclk;
     reg aresetn;
@@ -81,11 +82,11 @@ module axi_lite_stimulus();
         //Put test vectors here
         $display("\n##################################################################################################\n");
 
-        writeRegister( SLAVE_BASEADDR + 0,  6 ); // map
-        writeRegister( SLAVE_BASEADDR + 0,  7 ); // map
-        writeRegister( SLAVE_BASEADDR + 4,  5 ); // inp_image
-        writeRegister( SLAVE_BASEADDR + 8,  4 ); // w_addr
-        writeRegister( SLAVE_BASEADDR + 12, 1 ); // inp_valid
+        writeRegister( SLAVE1_BASEADDR + 0,  6 ); // map
+        writeRegister( SLAVE1_BASEADDR + 0,  7 ); // map
+        writeRegister( SLAVE1_BASEADDR + 4,  1 ); // inp1_valid
+        writeRegister( SLAVE2_BASEADDR + 0,  8 ); // inp_image
+        writeRegister( SLAVE2_BASEADDR + 4,  1 ); // inp2_valid
         
         $display("\n##################################################################################################\n");
         
