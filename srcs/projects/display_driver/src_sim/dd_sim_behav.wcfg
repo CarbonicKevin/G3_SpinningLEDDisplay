@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="dd_sim_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="axi_vip_pkg" />
+            <top_module name="dd_sim" />
+            <top_module name="glbl" />
+            <top_module name="std" />
+            <top_module name="xil_common_vip_pkg" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000000 us"></ZoomStartTime>
+      <ZoomEndTime time="600.785001 us"></ZoomEndTime>
+      <Cursor1Time time="600.785000 us"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="412"></NameColumnWidth>
+      <ValueColumnWidth column_width="196"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="5" />
+   <wvobject fp_name="/dd_sim/mst/DUT/led_gpio_tri_o" type="array">
+      <obj_property name="ElementShortName">led_gpio_tri_o[1:0]</obj_property>
+      <obj_property name="ObjectShortName">led_gpio_tri_o[1:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject fp_name="group47" type="group">
+      <obj_property name="label">s_axi</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/dd_sim/mst/DUT/vip_sim_blk_i/display_driver/inst/dd_reg/S_AXI_ACLK" type="logic">
+         <obj_property name="ElementShortName">S_AXI_ACLK</obj_property>
+         <obj_property name="ObjectShortName">S_AXI_ACLK</obj_property>
+      </wvobject>
+      <wvobject fp_name="/dd_sim/mst/DUT/vip_sim_blk_i/display_driver/inst/dd_reg/S_AXI_ARESETN" type="logic">
+         <obj_property name="ElementShortName">S_AXI_ARESETN</obj_property>
+         <obj_property name="ObjectShortName">S_AXI_ARESETN</obj_property>
+      </wvobject>
+      <wvobject fp_name="/dd_sim/mst/DUT/vip_sim_blk_i/display_driver/inst/dd_reg/S_AXI_AWADDR" type="array">
+         <obj_property name="ElementShortName">S_AXI_AWADDR[31:0]</obj_property>
+         <obj_property name="ObjectShortName">S_AXI_AWADDR[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/dd_sim/mst/DUT/vip_sim_blk_i/display_driver/inst/dd_reg/S_AXI_AWVALID" type="logic">
+         <obj_property name="ElementShortName">S_AXI_AWVALID</obj_property>
+         <obj_property name="ObjectShortName">S_AXI_AWVALID</obj_property>
+      </wvobject>
+      <wvobject fp_name="/dd_sim/mst/DUT/vip_sim_blk_i/display_driver/inst/dd_reg/S_AXI_AWREADY" type="logic">
+         <obj_property name="ElementShortName">S_AXI_AWREADY</obj_property>
+         <obj_property name="ObjectShortName">S_AXI_AWREADY</obj_property>
+      </wvobject>
+      <wvobject fp_name="/dd_sim/mst/DUT/vip_sim_blk_i/display_driver/inst/dd_reg/S_AXI_WDATA" type="array">
+         <obj_property name="ElementShortName">S_AXI_WDATA[31:0]</obj_property>
+         <obj_property name="ObjectShortName">S_AXI_WDATA[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/dd_sim/mst/DUT/vip_sim_blk_i/display_driver/inst/dd_reg/S_AXI_WSTRB" type="array">
+         <obj_property name="ElementShortName">S_AXI_WSTRB[3:0]</obj_property>
+         <obj_property name="ObjectShortName">S_AXI_WSTRB[3:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/dd_sim/mst/DUT/vip_sim_blk_i/display_driver/inst/dd_reg/S_AXI_WVALID" type="logic">
+         <obj_property name="ElementShortName">S_AXI_WVALID</obj_property>
+         <obj_property name="ObjectShortName">S_AXI_WVALID</obj_property>
+      </wvobject>
+      <wvobject fp_name="/dd_sim/mst/DUT/vip_sim_blk_i/display_driver/inst/dd_reg/S_AXI_WREADY" type="logic">
+         <obj_property name="ElementShortName">S_AXI_WREADY</obj_property>
+         <obj_property name="ObjectShortName">S_AXI_WREADY</obj_property>
+      </wvobject>
+      <wvobject fp_name="/dd_sim/mst/DUT/vip_sim_blk_i/display_driver/inst/dd_reg/S_AXI_BRESP" type="array">
+         <obj_property name="ElementShortName">S_AXI_BRESP[1:0]</obj_property>
+         <obj_property name="ObjectShortName">S_AXI_BRESP[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/dd_sim/mst/DUT/vip_sim_blk_i/display_driver/inst/dd_reg/S_AXI_BVALID" type="logic">
+         <obj_property name="ElementShortName">S_AXI_BVALID</obj_property>
+         <obj_property name="ObjectShortName">S_AXI_BVALID</obj_property>
+      </wvobject>
+      <wvobject fp_name="/dd_sim/mst/DUT/vip_sim_blk_i/display_driver/inst/dd_reg/S_AXI_BREADY" type="logic">
+         <obj_property name="ElementShortName">S_AXI_BREADY</obj_property>
+         <obj_property name="ObjectShortName">S_AXI_BREADY</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group89" type="group">
+      <obj_property name="label">dd_reg</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/dd_sim/mst/DUT/vip_sim_blk_i/display_driver/inst/dd_reg/LED_RESET" type="logic">
+         <obj_property name="ElementShortName">LED_RESET</obj_property>
+         <obj_property name="ObjectShortName">LED_RESET</obj_property>
+      </wvobject>
+      <wvobject fp_name="/dd_sim/mst/DUT/vip_sim_blk_i/display_driver/inst/dd_reg/write_array" type="array">
+         <obj_property name="ElementShortName">write_array[95:0]</obj_property>
+         <obj_property name="ObjectShortName">write_array[95:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/dd_sim/mst/DUT/vip_sim_blk_i/display_driver/inst/dd_reg/latch_array" type="array">
+         <obj_property name="ElementShortName">latch_array[95:0]</obj_property>
+         <obj_property name="ObjectShortName">latch_array[95:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/dd_sim/mst/DUT/vip_sim_blk_i/display_driver/inst/dd_reg/shift_array" type="array">
+         <obj_property name="ElementShortName">shift_array[95:0]</obj_property>
+         <obj_property name="ObjectShortName">shift_array[95:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group94" type="group">
+      <obj_property name="label">led_values_latch_0</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/dd_sim/mst/DUT/vip_sim_blk_i/display_driver/inst/\genblk1[0].arm /data_tx" type="logic">
+         <obj_property name="ElementShortName">data_tx</obj_property>
+         <obj_property name="ObjectShortName">data_tx</obj_property>
+      </wvobject>
+      <wvobject fp_name="/dd_sim/mst/DUT/vip_sim_blk_i/display_driver/inst/\genblk1[0].arm /led_row_latch" type="array">
+         <obj_property name="ElementShortName">led_row_latch[41:0]</obj_property>
+         <obj_property name="ObjectShortName">led_row_latch[41:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/dd_sim/mst/DUT/vip_sim_blk_i/display_driver/inst/\genblk1[0].arm /led_value" type="array">
+         <obj_property name="ElementShortName">led_value[23:0]</obj_property>
+         <obj_property name="ObjectShortName">led_value[23:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/dd_sim/mst/DUT/vip_sim_blk_i/display_driver/inst/\genblk1[0].arm /counter" type="array">
+         <obj_property name="ElementShortName">counter[12:0]</obj_property>
+         <obj_property name="ObjectShortName">counter[12:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/dd_sim/mst/DUT/vip_sim_blk_i/display_driver/inst/\genblk1[0].arm /led_idx" type="array">
+         <obj_property name="ElementShortName">led_idx[2:0]</obj_property>
+         <obj_property name="ObjectShortName">led_idx[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/dd_sim/mst/DUT/vip_sim_blk_i/display_driver/inst/\genblk1[0].arm /bit_idx" type="array">
+         <obj_property name="ElementShortName">bit_idx[4:0]</obj_property>
+         <obj_property name="ObjectShortName">bit_idx[4:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/dd_sim/mst/DUT/vip_sim_blk_i/display_driver/inst/\genblk1[0].arm /color_idx" type="array">
+         <obj_property name="ElementShortName">color_idx[31:0]</obj_property>
+         <obj_property name="ObjectShortName">color_idx[31:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group94" type="group">
+      <obj_property name="label">led_values_latch_2</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/dd_sim/mst/DUT/vip_sim_blk_i/display_driver/inst/\genblk1[2].arm /data_tx" type="logic">
+         <obj_property name="ElementShortName">data_tx</obj_property>
+         <obj_property name="ObjectShortName">data_tx</obj_property>
+      </wvobject>
+      <wvobject fp_name="/dd_sim/mst/DUT/vip_sim_blk_i/display_driver/inst/\genblk1[2].arm /led_row_latch" type="array">
+         <obj_property name="ElementShortName">led_row_latch[41:0]</obj_property>
+         <obj_property name="ObjectShortName">led_row_latch[41:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/dd_sim/mst/DUT/vip_sim_blk_i/display_driver/inst/\genblk1[2].arm /led_value" type="array">
+         <obj_property name="ElementShortName">led_value[23:0]</obj_property>
+         <obj_property name="ObjectShortName">led_value[23:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/dd_sim/mst/DUT/vip_sim_blk_i/display_driver/inst/\genblk1[2].arm /counter" type="array">
+         <obj_property name="ElementShortName">counter[12:0]</obj_property>
+         <obj_property name="ObjectShortName">counter[12:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/dd_sim/mst/DUT/vip_sim_blk_i/display_driver/inst/\genblk1[2].arm /led_idx" type="array">
+         <obj_property name="ElementShortName">led_idx[2:0]</obj_property>
+         <obj_property name="ObjectShortName">led_idx[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/dd_sim/mst/DUT/vip_sim_blk_i/display_driver/inst/\genblk1[2].arm /bit_idx" type="array">
+         <obj_property name="ElementShortName">bit_idx[4:0]</obj_property>
+         <obj_property name="ObjectShortName">bit_idx[4:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/dd_sim/mst/DUT/vip_sim_blk_i/display_driver/inst/\genblk1[2].arm /color_idx" type="array">
+         <obj_property name="ElementShortName">color_idx[31:0]</obj_property>
+         <obj_property name="ObjectShortName">color_idx[31:0]</obj_property>
+      </wvobject>
+   </wvobject>
+</wave_config>
