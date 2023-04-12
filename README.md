@@ -4,7 +4,7 @@
 # Spinning LED Display
 
 ### University of Toronto | Winter Semester 2023 | ECE532
-### Authors : Kevin Kim, Nikoo Givehchian, Spencer Ball, Eddie Tian.
+### Authors : Kevin Kim, Nikoo Givehchian, Spencer Ball, Eddie Tian
 
 ---
 
@@ -22,7 +22,7 @@ There are 4 discrete digital components implemented onto the FPGA.
    *Responsible for reading the input image from an SD card*
 
 2. Image Processing - Custom
-    *Responsible for transforming the image into radial coordinates*
+   *Responsible for transforming the image into radial coordinates*
 
 3. Display Driver - Custom  
    *Responsible for selecting which row of the image data to output onto the LEDs at a particular angle*
@@ -47,7 +47,9 @@ Included in this repo are the packaged blocks used to display in the project, th
 └───srcs
     ├───ip_repo: exported custom IPs
     │   │
-    │   └───display_driver: display driver repo
+    │   ├───display_driver: display driver repo
+    │   │
+    │   └───c2p_proj: cartesian to polar mapping block repo
     │   
     └───projects: folders that contain files for various projects
         ├───display_driver: projects to test the display driver.
@@ -70,6 +72,13 @@ Included in this repo are the packaged blocks used to display in the project, th
         │   ├───project_microblaze.tcl: tcl file to recreate the microblaze integration with the display driver.
         │   │
         │   └───project_vip_sim.tcl: tcl file to recreate the display driver simulation with the axi vip block.
+        │   
+        ├───c2p_proj: projects to test the cartesian to polar mapping block
+        │   │   │
+        │   ├───src_sim
+        │   │   └───car2pol_sim.sv: test file for car2pol block and axi communications
+        │   │ 
+        │   └───c2p_sim.tcl: tcl file to recreate cartesian to polar mapping block simulation with the axi vip block
         │   
         └───integration
 ```
