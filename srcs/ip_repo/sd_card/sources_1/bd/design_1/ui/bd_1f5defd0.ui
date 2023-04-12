@@ -1,0 +1,31 @@
+{
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 6.8.11  2018-08-07 bk=1.4403 VDI=40 GEI=35 GUI=JA:9.0 TLS
+#  -string -flagsOSRD
+preplace port CMD_SD_0 -pg 1 -y 20 -defaultsOSRD
+preplace port sys_clock -pg 1 -y -20 -defaultsOSRD
+preplace port SCLK_SD_0 -pg 1 -y 40 -defaultsOSRD
+preplace port RST_SD_0 -pg 1 -y 0 -defaultsOSRD
+preplace port reset -pg 1 -y -40 -defaultsOSRD
+preplace portBus BTN_0 -pg 1 -y 0 -defaultsOSRD
+preplace portBus LED_0 -pg 1 -y 60 -defaultsOSRD
+preplace portBus DAT_SD_0 -pg 1 -y -20 -defaultsOSRD
+preplace portBus SW_0 -pg 1 -y 40 -defaultsOSRD
+preplace inst read_image_v2_0 -pg 1 -lvl 2 -y 10 -defaultsOSRD
+preplace inst clk_wiz_0 -pg 1 -lvl 1 -y -10 -defaultsOSRD
+preplace netloc read_image_v2_0_CMD_SD 1 2 1 N
+preplace netloc read_image_v2_0_SCLK_SD 1 2 1 N
+preplace netloc sys_clock_1 1 0 1 -350J
+preplace netloc BTN_0_1 1 0 2 -360J 60 -130J
+preplace netloc SW_0_1 1 0 2 -370J 70 -110J
+preplace netloc read_image_v2_0_LED 1 2 1 N
+preplace netloc clk_wiz_0_clk_out1 1 1 1 N
+preplace netloc Net 1 2 1 N
+preplace netloc reset_1 1 0 2 -340J 80 -120
+preplace netloc read_image_v2_0_RST_SD 1 2 1 N
+levelinfo -pg 1 -390 -230 110 300 -top -380 -bot 320
+"
+}
+{
+   "da_board_cnt":"2"
+}

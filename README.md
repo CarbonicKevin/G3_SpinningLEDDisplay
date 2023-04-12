@@ -20,6 +20,7 @@ The physical components of the device are was mostly custom-made. The spinning c
 There are 4 discrete digital components implemented onto the FPGA.
 1. Image Input Block - Partially Custom    
    *Responsible for reading the input image from an SD card*
+   The SD card is read using an IP provided by XESSCorp, which can be found [here](https://github.com/xesscorp/VHDL_Lib). The raw data from the SD card is then checked for compatibility, reformatted, and placed on an AXI bus with a custom IP. 
 
 2. Image Processing - Custom
    *Responsible for transforming the image into radial coordinates*
@@ -49,7 +50,9 @@ Included in this repo are the packaged blocks used to display in the project, th
     │   │
     │   ├───display_driver: display driver repo
     │   │
-    │   └───c2p_proj: cartesian to polar mapping block repo
+    │   ├───c2p_proj: cartesian to polar mapping block repo
+    │   │
+    │   └───sd_card: sd card reader repo
     │   
     └───projects: folders that contain files for various projects
         ├───display_driver: projects to test the display driver.

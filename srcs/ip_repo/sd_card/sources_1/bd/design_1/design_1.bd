@@ -1,0 +1,161 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0x0",
+      "device": "xc7a200tsbg484-1",
+      "name": "design_1",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2018.3"
+    },
+    "design_tree": {
+      "read_image_v2_0": "",
+      "clk_wiz_0": ""
+    },
+    "ports": {
+      "BTN_0": {
+        "direction": "I",
+        "left": "4",
+        "right": "0"
+      },
+      "SW_0": {
+        "direction": "I",
+        "left": "7",
+        "right": "0"
+      },
+      "DAT_SD_0": {
+        "direction": "IO",
+        "left": "3",
+        "right": "0"
+      },
+      "RST_SD_0": {
+        "direction": "O"
+      },
+      "CMD_SD_0": {
+        "direction": "O"
+      },
+      "SCLK_SD_0": {
+        "direction": "O"
+      },
+      "LED_0": {
+        "direction": "O",
+        "left": "7",
+        "right": "0"
+      },
+      "reset": {
+        "type": "rst",
+        "direction": "I",
+        "parameters": {
+          "POLARITY": {
+            "value": "ACTIVE_LOW"
+          }
+        }
+      },
+      "sys_clock": {
+        "type": "clk",
+        "direction": "I",
+        "parameters": {
+          "FREQ_HZ": {
+            "value": "100000000"
+          },
+          "PHASE": {
+            "value": "0.000"
+          }
+        }
+      }
+    },
+    "components": {
+      "read_image_v2_0": {
+        "vlnv": "user.org:user:read_image_v2:1.0",
+        "xci_name": "design_1_read_image_v2_0_0"
+      },
+      "clk_wiz_0": {
+        "vlnv": "xilinx.com:ip:clk_wiz:6.0",
+        "xci_name": "design_1_clk_wiz_0_0",
+        "parameters": {
+          "CLK_IN1_BOARD_INTERFACE": {
+            "value": "sys_clock"
+          },
+          "RESET_BOARD_INTERFACE": {
+            "value": "reset"
+          },
+          "USE_BOARD_FLOW": {
+            "value": "true"
+          }
+        }
+      }
+    },
+    "nets": {
+      "clk_wiz_0_clk_out1": {
+        "ports": [
+          "clk_wiz_0/clk_out1",
+          "read_image_v2_0/CLK100MHZ"
+        ]
+      },
+      "BTN_0_1": {
+        "ports": [
+          "BTN_0",
+          "read_image_v2_0/BTN"
+        ]
+      },
+      "SW_0_1": {
+        "ports": [
+          "SW_0",
+          "read_image_v2_0/SW"
+        ]
+      },
+      "Net": {
+        "ports": [
+          "DAT_SD_0",
+          "read_image_v2_0/DAT_SD"
+        ]
+      },
+      "read_image_v2_0_RST_SD": {
+        "ports": [
+          "read_image_v2_0/RST_SD",
+          "RST_SD_0"
+        ]
+      },
+      "read_image_v2_0_CMD_SD": {
+        "ports": [
+          "read_image_v2_0/CMD_SD",
+          "CMD_SD_0"
+        ]
+      },
+      "read_image_v2_0_SCLK_SD": {
+        "ports": [
+          "read_image_v2_0/SCLK_SD",
+          "SCLK_SD_0"
+        ]
+      },
+      "read_image_v2_0_LED": {
+        "ports": [
+          "read_image_v2_0/LED",
+          "LED_0"
+        ]
+      },
+      "reset_1": {
+        "ports": [
+          "reset",
+          "clk_wiz_0/reset",
+          "read_image_v2_0/RST_SYS"
+        ]
+      },
+      "sys_clock_1": {
+        "ports": [
+          "sys_clock",
+          "clk_wiz_0/clk_in1"
+        ]
+      }
+    },
+    "addressing": {
+      "/read_image_v2_0": {
+        "address_spaces": {
+          "S_AXI": {
+            "range": "4G",
+            "width": "32"
+          }
+        }
+      }
+    }
+  }
+}
