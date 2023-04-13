@@ -38,6 +38,10 @@ Included in this repo are the packaged blocks used to display in the project, th
 
 ## 2. How to Use
 
+Within the intrgration folder, there are 2 folders in which we have the SD card and cartesian to polar mapping block integrated, and also one folder with the LED driver + microblaze integrated. To open each respective project, locate the tcl file and run the following:
+`source {filename}.tcl`
+For the LED driver + microblaze component, the vitis_src folder contains the scripts to be added to the vitis project.
+
 Vivado version: 2021.1
 
 ### SD Card Block
