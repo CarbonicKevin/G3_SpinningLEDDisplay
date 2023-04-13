@@ -38,6 +38,8 @@ Included in this repo are the packaged blocks used to display in the project, th
 
 ## 2. How to Use
 
+Vivado version: 2021.1
+
 ### SD Card Block
 
 Follow the steps in the `.tcl` file under `$GIT_ROOT/srcs/projects/sd_card`
