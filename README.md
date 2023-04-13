@@ -19,7 +19,7 @@ The physical components of the device are was mostly custom-made. The spinning c
 
 There are 4 discrete digital components implemented onto the FPGA.
 1. Image Input Block - Partially Custom    
-   *Responsible for reading the input image from an SD card*
+   *Responsible for reading the input image from an SD card. 
    The SD card is read using an IP provided by XESSCorp, which can be found [here](https://github.com/xesscorp/VHDL_Lib). They are the `.vhd` files in `srcs/ip_repo/sd_card`. The raw data from the SD card is then checked for compatibility, reformatted, and placed on an AXI bus with a custom IP. This is the `.v` file in the same location.
 
 2. Image Processing - Custom
@@ -29,7 +29,7 @@ There are 4 discrete digital components implemented onto the FPGA.
    *Responsible for selecting which row of the image data to output onto the LEDs at a particular angle*
 
 4. Microblaze  
-    *Responsible for controlling and communicating with other blocks*
+    *Responsible for controlling and communicating with other blocks* 
     The Microblaze reads angles from the encoder using Xilinx's AXI IIC IP which comes pre-installed in Vivado.
     Additionally, the block diagram contains the PmodDHB1 IP from Digilent, which can be found [here](https://github.com/Digilent/vivado-library). This h-bridge driver ended up not being used in the final demo due to motor controller incompatibility
     issues, but would work with the DHB2 Pmod provided by ECE532 for driving lower power motors.
@@ -37,7 +37,10 @@ There are 4 discrete digital components implemented onto the FPGA.
 Included in this repo are the packaged blocks used to display in the project, the tcl files to recreate any project files, as well as presentation files and reports.
 
 ## 2. How to Use
-...
+
+### SD Card Block
+
+Follow the steps in the `.tcl` file under `$GIT_ROOT/srcs/projects/sd_card`
 
 ## 3. Repository Structure
 
@@ -91,6 +94,8 @@ Included in this repo are the packaged blocks used to display in the project, th
     |   │   │
     |   │   └───project_vip_sim.tcl: tcl file to recreate the display driver simulation with the axi vip block.
     |   │   
+    |   ├───sd_card: projects to test the display driver.
+    |   |
     |   └───c2p_proj: projects to test the cartesian to polar mapping block
     |       ├───src_sim
     |       │   └───car2pol_sim.sv: test file for car2pol block and axi communications
@@ -116,3 +121,5 @@ Included in this repo are the packaged blocks used to display in the project, th
 ```               
 
 ## 4. Acknowledgements
+
+[XESS Corporation](https://xess.com) for making their [SD Card IP](https://github.com/xesscorp/VHDL_Lib) open source and available for use. 
