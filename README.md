@@ -100,7 +100,8 @@ Included in this repo are the packaged blocks used to display in the project, th
                 │
                 ├───vitis_src: SDK source files (C-code). Start project with 'Hello World' template to be safe.
                 │
-                └───integration.srcs\constrs_1\new\integration.xdc: Constraints file which binds PMOD port pins for external connection to encoder and h-bridge (if using compatible motor driver).
+                └───integration.srcs\constrs_1\new\integration.xdc: Constraints file which binds PMOD port pins for external 
+                connection to encoder and h-bridge (if using compatible motor driver).
 
 
 ```               
