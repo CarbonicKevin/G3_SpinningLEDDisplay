@@ -25,7 +25,7 @@ There are 4 discrete digital components implemented onto the FPGA.
 2. Image Processing - Custom
    *Responsible for transforming the image into radial coordinates*
 
-3. Display Driver - Custom  
+3. Display Driver - Custom
    *Responsible for selecting which row of the image data to output onto the LEDs at a particular angle*
 
 4. Microblaze  
