@@ -106,6 +106,4 @@ Included in this repo are the packaged blocks used to display in the project, th
 
 ```               
 
-## 4. Authors
-
-## 5. Acknowledgements
+## 4. Acknowledgements
