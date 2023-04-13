@@ -1,0 +1,65 @@
+## SD card
+
+set_property -dict {PACKAGE_PIN V20 IOSTANDARD LVCMOS33} [get_ports RST_SD]
+set_property -dict {PACKAGE_PIN T20 IOSTANDARD LVCMOS33} [get_ports {DAT_SD[2]}]
+set_property -dict {PACKAGE_PIN T21 IOSTANDARD LVCMOS33} [get_ports {DAT_SD[1]}]
+set_property -dict {PACKAGE_PIN W20 IOSTANDARD LVCMOS33} [get_ports CMD_SD]
+set_property -dict {PACKAGE_PIN W19 IOSTANDARD LVCMOS33} [get_ports SCLK_SD]
+set_property -dict {PACKAGE_PIN U18 IOSTANDARD LVCMOS33} [get_ports {DAT_SD[3]}]
+set_property -dict {PACKAGE_PIN V19 IOSTANDARD LVCMOS33} [get_ports {DAT_SD[0]}]
+
+#set_property -dict { PACKAGE_PIN T18 IOSTANDARD LVCMOS33 } [get_ports { card_present }];
+set_property -dict {PACKAGE_PIN T14 IOSTANDARD LVCMOS33} [get_ports {LED[0]}]
+set_property -dict {PACKAGE_PIN T15 IOSTANDARD LVCMOS33} [get_ports {LED[1]}]
+set_property -dict {PACKAGE_PIN T16 IOSTANDARD LVCMOS33} [get_ports {LED[2]}]
+set_property -dict {PACKAGE_PIN U16 IOSTANDARD LVCMOS33} [get_ports {LED[3]}]
+set_property -dict {PACKAGE_PIN V15 IOSTANDARD LVCMOS33} [get_ports {LED[4]}]
+set_property -dict {PACKAGE_PIN W16 IOSTANDARD LVCMOS33} [get_ports {LED[5]}]
+set_property -dict {PACKAGE_PIN W15 IOSTANDARD LVCMOS33} [get_ports {LED[6]}]
+set_property -dict {PACKAGE_PIN Y13 IOSTANDARD LVCMOS33} [get_ports {LED[7]}]
+
+set_property -dict {PACKAGE_PIN C22 IOSTANDARD LVCMOS33} [get_ports {BTN[0]}]
+set_property -dict {PACKAGE_PIN D14 IOSTANDARD LVCMOS33} [get_ports {BTN[1]}]
+set_property -dict {PACKAGE_PIN F15 IOSTANDARD LVCMOS33} [get_ports {BTN[2]}]
+set_property -dict {PACKAGE_PIN D22 IOSTANDARD LVCMOS33} [get_ports {BTN[3]}]
+set_property -dict {PACKAGE_PIN B22 IOSTANDARD LVCMOS33} [get_ports {BTN[4]}]
+
+set_property -dict {PACKAGE_PIN E22 IOSTANDARD LVCMOS33} [get_ports {SW[0]}]
+set_property -dict {PACKAGE_PIN F21 IOSTANDARD LVCMOS33} [get_ports {SW[1]}]
+set_property -dict {PACKAGE_PIN G21 IOSTANDARD LVCMOS33} [get_ports {SW[2]}]
+set_property -dict {PACKAGE_PIN G22 IOSTANDARD LVCMOS33} [get_ports {SW[3]}]
+set_property -dict {PACKAGE_PIN H17 IOSTANDARD LVCMOS33} [get_ports {SW[4]}]
+set_property -dict {PACKAGE_PIN J16 IOSTANDARD LVCMOS33} [get_ports {SW[5]}]
+set_property -dict {PACKAGE_PIN K13 IOSTANDARD LVCMOS33} [get_ports {SW[6]}]
+set_property -dict {PACKAGE_PIN M17 IOSTANDARD LVCMOS33} [get_ports {SW[7]}]
+
+
+set_property -dict {PACKAGE_PIN G4 IOSTANDARD LVCMOS15} [get_ports RST_SYS]
+
+set_property -dict {PACKAGE_PIN R4 IOSTANDARD LVCMOS33} [get_ports CLK100MHZ]
+
+#create_clock -period 10.000 -name clk -waveform {0.000 5.000} -add [get_ports CLK100MHZ]
+
+#set_property MARK_DEBUG false [get_nets sd_card/hndShk_r]
+#set_property MARK_DEBUG false [get_nets sd_card/hs_i_reg]
+#set_property MARK_DEBUG false [get_nets sd_card/hs_o]
+#set_property MARK_DEBUG true [get_nets {data_o[6]}]
+#set_property MARK_DEBUG true [get_nets {data_o[5]}]
+#set_property MARK_DEBUG true [get_nets {data_o[7]}]
+#set_property MARK_DEBUG true [get_nets {data_o[2]}]
+#set_property MARK_DEBUG true [get_nets {data_o[3]}]
+#set_property MARK_DEBUG true [get_nets {data_o[0]}]
+#set_property MARK_DEBUG true [get_nets {data_o[1]}]
+#set_property MARK_DEBUG true [get_nets {data_o[4]}]
+#set_property MARK_DEBUG true [get_nets {state__0[0]}]
+#set_property MARK_DEBUG true [get_nets {state__0[1]}]
+#set_property MARK_DEBUG true [get_nets hs_i_reg_n_0]
+#set_property MARK_DEBUG true [get_nets {data__0[2]}]
+#set_property MARK_DEBUG true [get_nets {data__0[5]}]
+#set_property MARK_DEBUG true [get_nets {data__0[6]}]
+#set_property MARK_DEBUG true [get_nets {data__0[0]}]
+#set_property MARK_DEBUG true [get_nets {data__0[1]}]
+#set_property MARK_DEBUG true [get_nets {data__0[3]}]
+#set_property MARK_DEBUG true [get_nets {data__0[4]}]
+#set_property MARK_DEBUG true [get_nets {data__0[7]}]
+
