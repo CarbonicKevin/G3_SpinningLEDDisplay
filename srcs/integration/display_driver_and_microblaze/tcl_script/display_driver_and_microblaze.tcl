@@ -154,7 +154,7 @@ set_property -name "revised_directory_structure" -value "1" -objects $obj
 set_property -name "sim.central_dir" -value "$proj_dir/${_xil_proj_name_}.ip_user_files" -objects $obj
 set_property -name "sim.ip.auto_export_scripts" -value "1" -objects $obj
 set_property -name "simulator_language" -value "Mixed" -objects $obj
-set_property -name "sim_compile_state" -value "1" -objects $obj
+#set_property -name "sim_compile_state" -value "1" -objects $obj
 set_property -name "webtalk.activehdl_export_sim" -value "2" -objects $obj
 set_property -name "webtalk.modelsim_export_sim" -value "2" -objects $obj
 set_property -name "webtalk.questa_export_sim" -value "2" -objects $obj
