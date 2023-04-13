@@ -59,48 +59,47 @@ Included in this repo are the packaged blocks used to display in the project, th
     │   │
     │   └───digilent_precanned: digilent IP repo for Vivado found [here](https://github.com/Digilent/vivado-library). 
     |
-    └───projects: folders that contain files for various projects
-        ├───display_driver: projects to test the display driver.
-        │   │
-        │   ├───scripts
-        │   │   │
-        │   │   └───led_values_gen.py: small script to quickly generate some test LED values
-        │   │
-        │   ├───src_microblaze
-        │   │   │
-        │   │   ├───main.c: test code to run with the project_microblaze.tcl
-        │   │   │
-        │   │   └───microblaze.xdc: constraint for project_microblaze.tcl
-        │   │
-        │   ├───src_sim
-        │   │   ├───dd_sim_behav.wcfg: waveform simulation file for project_vip_sim.tcl
-        │   │   │
-        │   │   └───dd_sim.sv: simulation sv file for project_vip_sim.tcl
-        │   │
-        │   ├───project_microblaze.tcl: tcl file to recreate the microblaze integration with the display driver.
-        │   │
-        │   └───project_vip_sim.tcl: tcl file to recreate the display driver simulation with the axi vip block.
+    ├───projects: folders that contain files for various projects
+    |   ├───display_driver: projects to test the display driver.
+    |   │   │
+    |   │   ├───scripts
+    |   │   │   │
+    |   │   │   └───led_values_gen.py: small script to quickly generate some test LED values
+    |   │   │
+    |   │   ├───src_microblaze
+    |   │   │   │
+    |   │   │   ├───main.c: test code to run with the project_microblaze.tcl
+    |   │   │   │
+    |   │   │   └───microblaze.xdc: constraint for project_microblaze.tcl
+    |   │   │
+    |   │   ├───src_sim
+    |   │   │   ├───dd_sim_behav.wcfg: waveform simulation file for project_vip_sim.tcl
+    |   │   │   │
+    |   │   │   └───dd_sim.sv: simulation sv file for project_vip_sim.tcl
+    |   │   │
+    |   │   ├───project_microblaze.tcl: tcl file to recreate the microblaze integration with the display driver.
+    |   │   │
+    |   │   └───project_vip_sim.tcl: tcl file to recreate the display driver simulation with the axi vip block.
+    |   │   
+    |   └───c2p_proj: projects to test the cartesian to polar mapping block
+    |       ├───src_sim
+    |       │   └───car2pol_sim.sv: test file for car2pol block and axi communications
+    |       │ 
+    |       └───c2p_sim.tcl: tcl file to recreate cartesian to polar mapping block simulation with the axi vip block
+    |       
+    └───integration
         │   
-        ├───c2p_proj: projects to test the cartesian to polar mapping block
-        │   │   
-        │   ├───src_sim
-        │   │   └───car2pol_sim.sv: test file for car2pol block and axi communications
-        │   │ 
-        │   └───c2p_sim.tcl: tcl file to recreate cartesian to polar mapping block simulation with the axi vip block
-        │   
-        └───integration
-            │   
-            ├───sd_c2p_integration
-            │   ├───src_sim: simulation sv file for sd_c2p_integration.tcl
-            │   │
-            │   └───sd_c2p_integration.tcl: tcl file to recreate image input and image processing blocks
-            │ 
-            └───display_driver_and_microblaze
-                ├───tcl_script: tcl file to recreate display driver integrated with encoder reading block diagram.
-                │
-                ├───vitis_src: SDK source files (C-code). Start project with 'Hello World' template to be safe.
-                │
-                └───integration.srcs\constrs_1\new\integration.xdc: Constraints file which binds PMOD port pins for external 
+        ├───sd_c2p_integration
+        │   ├───src_sim: simulation sv file for sd_c2p_integration.tcl
+        │   │
+        │   └───sd_c2p_integration.tcl: tcl file to recreate image input and image processing blocks
+        │ 
+        └───display_driver_and_microblaze
+            ├───tcl_script: tcl file to recreate display driver integrated with encoder reading block diagram.
+            │
+            ├───vitis_src: SDK source files (C-code). Start project with 'Hello World' template to be safe.
+            │
+            └───integration.srcs\constrs_1\new\integration.xdc: Constraints file which binds PMOD port pins for external 
                 connection to encoder and h-bridge (if using compatible motor driver).
 
 
