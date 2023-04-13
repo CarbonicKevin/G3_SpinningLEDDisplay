@@ -48,6 +48,16 @@ Included in this repo are the packaged blocks used to display in the project, th
 │       ├───nexys-video_rm.pdf: https://digilent.com/reference/programmable-logic/nexys-video/start
 │       │
 │       └───WS2812B.pdf: https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf
+│
+├───test: contains test script for coordinate mapper algorithm
+│   ├───test.py: test script to test cartesian to polar mapping algorithm
+│   │
+│   ├───test.c: script to generate coordinate map, to be integrated with microblaze
+│   │
+│   ├───test_image2.png: test image for the coordinate mapper
+│   │
+│   └───test_image2_o.png: output of test for coordinate mapper
+│
 └───srcs
     ├───ip_repo: exported custom IPs
     │   │
