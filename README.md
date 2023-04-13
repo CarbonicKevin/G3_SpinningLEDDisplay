@@ -28,8 +28,11 @@ There are 4 discrete digital components implemented onto the FPGA.
 3. Display Driver - Custom  
    *Responsible for selecting which row of the image data to output onto the LEDs at a particular angle*
 
-4. Microblaze   
+4. Microblaze  
     *Responsible for controlling and communicating with other blocks*
+    The Microblaze reads angles from the encoder using Xilinx's AXI IIC IP which comes pre-installed in Vivado.
+    Additionally, the block diagram contains the PmodDHB1 IP from Digilent, which can be found [here](https://github.com/Digilent/vivado-library). This h-bridge driver ended up not being used in the final demo due to motor controller incompatibility
+    issues, but would work with the DHB2 Pmod provided by ECE532 for driving lower power motors.
 
 Included in this repo are the packaged blocks used to display in the project, the tcl files to recreate any project files, as well as presentation files and reports.
 
@@ -52,8 +55,10 @@ Included in this repo are the packaged blocks used to display in the project, th
     │   │
     │   ├───c2p_proj: cartesian to polar mapping block repo
     │   │
-    │   └───sd_card: sd card reader repo
-    │   
+    │   ├───sd_card: sd card reader repo
+    │   │
+    │   └───digilent_precanned: digilent IP repo for Vivado found [here](https://github.com/Digilent/vivado-library). 
+    |
     └───projects: folders that contain files for various projects
         ├───display_driver: projects to test the display driver.
         │   │
@@ -77,14 +82,28 @@ Included in this repo are the packaged blocks used to display in the project, th
         │   └───project_vip_sim.tcl: tcl file to recreate the display driver simulation with the axi vip block.
         │   
         ├───c2p_proj: projects to test the cartesian to polar mapping block
-        │   │   │
+        │   │   
         │   ├───src_sim
         │   │   └───car2pol_sim.sv: test file for car2pol block and axi communications
         │   │ 
         │   └───c2p_sim.tcl: tcl file to recreate cartesian to polar mapping block simulation with the axi vip block
         │   
         └───integration
-```
+            │   
+            ├───sd_c2p_integration
+            │   ├───src_sim: simulation sv file for sd_c2p_integration.tcl
+            │   │
+            │   └───sd_c2p_integration.tcl: tcl file to recreate image input and image processing blocks
+            │ 
+            └───display_driver_and_microblaze
+                ├───tcl_script: tcl file to recreate display driver integrated with encoder reading block diagram.
+                │
+                ├───vitis_src: SDK source files (C-code). Start project with 'Hello World' template to be safe.
+                │
+                └───integration.srcs\constrs_1\new\integration.xdc: Constraints file which binds PMOD port pins for external connection to encoder and h-bridge (if using compatible motor driver).
+
+
+```               
 
 ## 4. Authors
 
