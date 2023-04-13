@@ -7,13 +7,13 @@
 
 #Please set line 7 to where the project directory should go.
 
-set project_dir YOUR_PROJECT_DIR
+set project_dir /groups/tgbkgrp/sd_card_test
 set sources ./srcs
 
-create_project test_sd_card $project_dir -part xc7a200tsbg484-1
-add_files -norecurse $sources/SDCard.vhd
-add_files -norecurse $sources/common.vhd
-add_files -norecurse $sources/read_image_v2.v
+create_project test_sd_card $project_dir -force -part xc7a200tsbg484-1
+add_files -force -norecurse $sources/SDCard.vhd
+add_files -force -norecurse $sources/common.vhd
+add_files -force -norecurse $sources/sd_card_test.v
 
 import_files -fileset constrs_1 -force -norecurse $sources/sd_constrs.xdc
 update_compile_order -fileset sources_1
