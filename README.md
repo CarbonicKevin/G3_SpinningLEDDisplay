@@ -52,11 +52,13 @@ Follow the steps in the `.tcl` file under `$GIT_ROOT/srcs/projects/sd_card`
 
 ```
 ├───docs
-│   └───device_manuals: contains various manuals for the different devices used
-│       │
-│       ├───nexys-video_rm.pdf: https://digilent.com/reference/programmable-logic/nexys-video/start
-│       │
-│       └───WS2812B.pdf: https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf
+│   ├───device_manuals: contains various manuals for the different devices used
+│   │   │
+│   │   ├───nexys-video_rm.pdf: https://digilent.com/reference/programmable-logic/nexys-video/start
+│   │   │
+│   │   └───WS2812B.pdf: https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf
+│   │
+│   └───group_submissions: contains the final report and presentation
 │
 ├───test: contains test script for coordinate mapper algorithm
 │   ├───test.py: test script to test cartesian to polar mapping algorithm
